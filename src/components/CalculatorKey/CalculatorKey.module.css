@@ -1,0 +1,16 @@
+.CalculatorKey {
+  background: yellowgreen;
+  padding: 5px;
+  margin: 0.5rem;
+  flex-grow: 1;
+  width: auto;
+  height: 5rem;
+  color: white;
+  font-weight: bold;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.CalculatorKey:hover {
+  background: lightgreen;
+}

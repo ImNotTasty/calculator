@@ -4,10 +4,11 @@ import DisplayScreen from "../../components/DisplayScreen/DisplayScreen";
 import Equation from "../../models/Equation";
 import styles from "./Calculator.module.css";
 
+const defaultUrl = "http://localhost:8080/equationHistory/";
 const keySymbols = "0,1,2,3,4,5,6,7,8,9,+,-,/,*,(,)".split(",");
 
 interface Props {
-  addToHistoryHandler: (equation: Equation) => void;
+  getHistory: () => void;
 }
 
 interface State {
@@ -48,9 +49,16 @@ class Calculator extends Component<Props, State> {
   };
 
   equalsHandler = () => {
-    this.props.addToHistoryHandler(this.state.currEquation);
     if (this.state.currEquation.isValidEquation()) {
+      fetch(
+        defaultUrl +
+          encodeURIComponent(this.state.currEquation.symbols.join("")),
+        {
+          method: "POST",
+        }
+      );
       this.clearEquation();
+      this.props.getHistory();
     }
   };
 
